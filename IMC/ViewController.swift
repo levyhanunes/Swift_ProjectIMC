@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var imc: Double = 0;
+    
     	
     @IBOutlet weak var tfPWeight: UITextField!
     
@@ -23,10 +25,42 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
+    	
     @IBAction func calculate(_ sender: Any) {
+        if let weight = Double(tfPWeight.text!), let height = Double(tfHeight.text!) {
+                imc = weight / pow(height, 2)
+       
+                showResults()
+            }
+        }
+        
+        func showResults(){
+            var result: String = ""
+            var image: String = ""
+            
+            switch imc {
+            case 0..<16:
+                result = "Magreza"
+                image = "abaixo"
+            
+            case 16..<18.5:
+                result = "Abaixo do peso"
+                image = "abaixo"
+                
+            case 18.5..<25:
+                result = "Peso Ideal"
+                image = "ideal"
+                
+            case 25..<30:
+                result = "Sobre peso"
+                image = "sobre"
+                
+            default:
+                result = "Obesidade"
+                image = "obesidade"
+            }
+        }
+    
     }
     
-
-}
 
