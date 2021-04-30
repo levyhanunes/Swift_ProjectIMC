@@ -20,9 +20,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var ivResult: UIImageView!
     
+    @IBOutlet var viResult: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     	
@@ -59,6 +65,10 @@ class ViewController: UIViewController {
                 result = "Obesidade"
                 image = "obesidade"
             }
+            lbResult.text = "\(Int(imc)): \(result)"
+            ivResult.image = UIImage(named: image)
+            viResult.isHidden = false
+            view.endEditing(true)
         }
     
     }
